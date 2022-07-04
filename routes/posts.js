@@ -1,5 +1,3 @@
-// routes/posts.js
-
 const express = require("express");
 const Post = require("../models/Post");
 const router = express.Router();
@@ -23,6 +21,21 @@ router.post("/", async (req, res) => {
 router.get("/list", async (req, res) => {
   try {
     let posts = await Post.find();
+    res.status(200).json({
+      status: 200,
+      data: posts,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 400,
+      message: err.message,
+    });
+  }
+});
+
+router.get("/list/:userId", async (req, res) => {
+  try {
+    let posts = await Post.find({ authorId: req.params.userId });
     res.status(200).json({
       status: 200,
       data: posts,
