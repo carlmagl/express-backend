@@ -6,7 +6,7 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 const config = require("./config");
 
 const postsRouter = require("./routes/posts");
