@@ -16,7 +16,7 @@ app.use(logger("dev"));
 const dbUrl = config.dbUrl;
 
 var options = {
-  keepAlive: 1,
+  keepAlive: true,
   connectTimeoutMS: 30000,
   useNewUrlParser: true,
   useUnifiedTopology: true,
