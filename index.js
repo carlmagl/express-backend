@@ -41,7 +41,6 @@ app.use(
 
 setTimeout(() => {}, 1000);
 app.use(express.json()); // middleware for parsing application/json
-app.use("/users", users); // middleware for listening to routes
 app.use(errors.errorHandler); // middleware for error responses
 
 mongoose.connect(dbUrl, options, (err) => {
@@ -56,6 +55,7 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use("/users", users); // middleware for listening to routes
 app.use("/posts", postsRouter);
 
 app.listen(port, function () {
