@@ -15,16 +15,20 @@ const config = require("./config");
 
 const postsRouter = require("./routes/posts");
 const userRouter = require("./controllers/UserController");
-const whitelist = ["http://.http://localhost:3000", "http://developer2.com"];
+const whitelist = ["http://localhost:3000", "http://developer2.com"];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error());
+      var msg =
+        "The CORS policy for this site does not " +
+        "allow access from the specified Origin.";
+      return callback(new Error(msg), false);
     }
   },
 };
+app.use(cors(corsOptions));
 
 app.use(logger("dev"));
 
@@ -49,7 +53,6 @@ app.use(
   })
 );
 
-setTimeout(() => {}, 1000);
 app.use(express.json()); // middleware for parsing application/json
 app.use(errors.errorHandler); // middleware for error responses
 
@@ -57,7 +60,6 @@ mongoose.connect(dbUrl, options, (err) => {
   if (err) console.log(err);
 });
 
-app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
