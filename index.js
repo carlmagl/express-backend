@@ -15,6 +15,16 @@ const config = require("./config");
 
 const postsRouter = require("./routes/posts");
 const userRouter = require("./controllers/UserController");
+const whitelist = ["http://.http://localhost:3000", "http://developer2.com"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error());
+    }
+  },
+};
 
 app.use(logger("dev"));
 
@@ -47,11 +57,7 @@ mongoose.connect(dbUrl, options, (err) => {
   if (err) console.log(err);
 });
 
-app.use(
-  cors({
-    origin: "http://localhost:3000/",
-  })
-);
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
