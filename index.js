@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const auth = require("./helpers/jwt.js");
 const { unless } = require("express-unless");
-const users = require("./controllers/UserController.js");
+// const users = require("./controllers/UserController.js");
 const errors = require("./helpers/ErrorHandler.js");
 
 const port = process.env.PORT || 5000;
