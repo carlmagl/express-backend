@@ -27,7 +27,9 @@ async function getById(id) {
 }
 
 async function updateUser(id) {
-  const user = await User.findByIdAndUpdate(id);
+  const user = await User.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
   return user.toJSON();
 }
 
