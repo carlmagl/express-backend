@@ -26,6 +26,11 @@ async function getById(id) {
   return user.toJSON();
 }
 
+async function updateUser(id) {
+  const user = await User.findByIdAndUpdate(id);
+  return user.toJSON();
+}
+
 module.exports = {
   login,
   register,

@@ -31,4 +31,11 @@ router.get("/:id", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+router.post("/:id", (req, res, next) => {
+  userServices
+    .updateUser(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) => next(err));
+});
+
 module.exports = router;
