@@ -24,7 +24,7 @@ const corsOptions = {
     } else {
       var msg =
         "The CORS policy for this site does not " +
-        "allow access from the specified Origin.";
+        `allow access from the specified Origin. Does not match ${origin}`;
       return callback(new Error(msg), false);
     }
   },
@@ -64,7 +64,7 @@ mongoose.connect(dbUrl, options, (err) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use("/users", users);
+app.use("/users", userRouter);
 app.use("/posts", postsRouter);
 app.use("/events", eventsRouter);
 
