@@ -33,7 +33,7 @@ router.get("/:id", (req, res, next) => {
 
 router.post("/:id", (req, res, next) => {
   userServices
-    .updateUser(req.params.id)
+    .updateUser(req.params.id, req)
     .then((user) => res.json(user))
     .catch((err) => next(err));
 });
