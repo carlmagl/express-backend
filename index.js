@@ -17,19 +17,19 @@ const postsRouter = require("./routes/posts");
 const eventsRouter = require("./routes/events");
 const userRouter = require("./controllers/UserController");
 const whitelist = ["http://localhost:3000", "http://developer2.com"];
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       var msg =
-//         "The CORS policy for this site does not " +
-//         "allow access from the specified Origin.";
-//       return callback(new Error(msg), false);
-//     }
-//   },
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      var msg =
+        "The CORS policy for this site does not " +
+        "allow access from the specified Origin.";
+      return callback(new Error(msg), false);
+    }
+  },
+};
+app.use(cors(corsOptions));
 
 app.use(logger("dev"));
 
