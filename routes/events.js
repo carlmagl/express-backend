@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/events", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let events = await Event.find();
     res.status(200).json({

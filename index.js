@@ -50,7 +50,7 @@ app.use(
     path: [
       { url: "/users/login", methods: ["POST"] },
       { url: "/users/register", methods: ["POST"] },
-      { url: "/events", methods: ["GET"] },
+      { url: "/events/events", methods: ["GET"] },
     ],
   })
 );
