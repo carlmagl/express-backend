@@ -18,11 +18,7 @@ let eventSchema = new Schema(
       required: true,
     },
     location: {
-      type: [Number],
-      index: {
-        type: "2dsphere",
-        sparse: true,
-      },
+      type: String,
     },
     creatorId: {
       type: String,
