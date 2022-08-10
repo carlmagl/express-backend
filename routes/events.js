@@ -35,10 +35,10 @@ router.get("/", async (req, res) => {
 
 router.get("/:eventId", async (req, res) => {
   try {
-    let company = await Event.findOne({
-      _id: req.params.companyId,
+    let event = await Event.findOne({
+      _id: req.params.eventId,
     });
-    if (company) {
+    if (event) {
       res.status(200).json({
         status: 200,
         data: company,
@@ -46,7 +46,7 @@ router.get("/:eventId", async (req, res) => {
     }
     res.status(400).json({
       status: 400,
-      message: "No company found",
+      message: "No event found",
     });
   } catch (err) {
     res.status(400).json({
